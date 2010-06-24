@@ -117,8 +117,8 @@ function renderPlantUML($PlantUML_Source)
     // create temporary uml text file
     if (!is_dir(getUploadDirectory()."/generated/plantuml"))
     {
-        mkdir(getUploadDirectory()."/generated");
-        mkdir(getUploadDirectory()."/generated/plantuml");
+        @mkdir(getUploadDirectory()."/generated");
+        @mkdir(getUploadDirectory()."/generated/plantuml");
     }
     $umlFile = getUploadDirectory()."/generated/plantuml/uml-".$title_hash."-".$hash.".uml";
     $fp = fopen($umlFile,"w+");
@@ -126,7 +126,9 @@ function renderPlantUML($PlantUML_Source)
     fclose($fp);
 
     // Launch PlantUML
-    print setlocale();
+    // FIXME remove hardcode, although it's OK
+    putenv('LANG=en_US.UTF-8');
+    putenv('LC_ALL=en_US.UTF-8');
     $command = "java -jar \"".$plantumlJar."\" -o \"".getUploadDirectory()."/generated/plantuml\" \"".$umlFile."\"";
     $status_code = exec($command);
 
