@@ -51,15 +51,14 @@ class MW_PlantUML
         return true;
     }
 
-    static function init()
+    static function init($parser)
     {
-        global $wgParser;
         # register the extension with the WikiText parser
         # the first parameter is the name of the new tag.
         # In this case it defines the tag <uml> ... </uml>
         # the second parameter is the callback function for
         # processing the text between the tags
-        $wgParser->setHook('uml', 'MW_PlantUML::parserHook');
+        $parser->setHook('uml', 'MW_PlantUML::parserHook');
         return true;
     }
 
