@@ -128,9 +128,9 @@ class MW_PlantUML
         // FIXME remove hardcode, although it's OK
         putenv('LANG=en_US.UTF-8');
         putenv('LC_ALL=en_US.UTF-8');
-        $command = "java -jar \"$jar\" -o \"$wgUploadDirectory/generated/plantuml\" -charset UTF-8 \"$umlFile\"";
-        $status_code = exec($command);
-        
+        $command = "java -Djava.awt.headless=true -jar \"$jar\" -o \"$wgUploadDirectory/generated/plantuml\" -charset UTF-8 \"$umlFile\"";
+        $status_code = wfShellExec($command);
+
         // Delete temporary uml text file
         unlink($umlFile);
 
