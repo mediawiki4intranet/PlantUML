@@ -33,7 +33,7 @@ $wgExtensionCredits['parserhook'][] = array(
 if (defined('MW_SUPPORTS_PARSERFIRSTCALLINIT'))
 {
     $wgHooks['ParserFirstCallInit'][] = 'MW_PlantUML::init';
-    $wgHooks['ArticleSave'][] = 'MW_PlantUML::cleanImages';
+    $wgHooks['ArticlePrepareTextForEdit'][] = 'MW_PlantUML::cleanImages';
 }
 else
     $wgExtensionFunctions[] = 'MW_PlantUML::init';
